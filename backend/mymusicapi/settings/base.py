@@ -1,12 +1,13 @@
 import os
-
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 if not SECRET_KEY:
-    raise ValueError("SECRET_KEY is not set. Please define it in the environment or .env file.")
+    raise ValueError(
+        "SECRET_KEY is not set. Please define it in the environment or .env file."
+    )
 
 DEBUG = True
 
