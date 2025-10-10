@@ -8,7 +8,7 @@ class Album(models.Model):
 
     artist = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    year = models.IntegerField(max_length=30)
+    year = models.IntegerField()
     genre = models.CharField(max_length=255)
 
     class Meta:
