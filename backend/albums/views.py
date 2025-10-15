@@ -1,6 +1,7 @@
 import random
 
 from albums.models import Album
+from albums.pagination import CustomPagination
 from albums.serializers import AlbumSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -12,8 +13,9 @@ class AlbumViewSet(viewsets.ModelViewSet):
     API endpoint that allows albums to be viewed, created, updated and deleted.
     """
 
-    queryset = Album.objects.all()
+    queryset = Album.objects.all().order_by("id")
     serializer_class = AlbumSerializer
+    pagination_class = CustomPagination
 
     @action(detail=False, methods=["get"])
     def random(self, request):
