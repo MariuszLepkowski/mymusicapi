@@ -3,9 +3,12 @@ import random
 from albums.models import Album
 from albums.pagination import CustomPagination
 from albums.serializers import AlbumSerializer
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from .filters import AlbumFilter
 
 
 class AlbumViewSet(viewsets.ModelViewSet):
@@ -16,6 +19,16 @@ class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by("id")
     serializer_class = AlbumSerializer
     pagination_class = CustomPagination
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+    filterset_class = AlbumFilter
+    filterset_fields = ["artist", "title", "year", "genre"]
+    search_fields = ["artist", "title", "year", "genre"]
+    ordering_fields = ["year", "artist", "title"]
+    ordering = ["id"]
 
     @action(detail=False, methods=["get"])
     def random(self, request):
