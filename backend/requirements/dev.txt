@@ -7,3 +7,4 @@ flake8-bugbear
 flake8-comprehensions
 black
 isort
+drf-spectacular
