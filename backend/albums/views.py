@@ -5,6 +5,7 @@ from albums.pagination import CustomPagination
 from albums.serializers import AlbumSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import (
+    OpenApiExample,
     OpenApiParameter,
     OpenApiResponse,
     extend_schema,
@@ -27,13 +28,13 @@ from .filters import AlbumFilter
         parameters=[
             OpenApiParameter(
                 name="artist",
-                description="Filter by artist name (exact match)",
+                description="Filter by artist name",
                 required=False,
                 type=str,
             ),
             OpenApiParameter(
                 name="title",
-                description="Filter by album title (exact match)",
+                description="Filter by album title",
                 required=False,
                 type=str,
             ),
@@ -45,7 +46,7 @@ from .filters import AlbumFilter
             ),
             OpenApiParameter(
                 name="genre",
-                description="Filter by genre (exact match)",
+                description="Filter by genre",
                 required=False,
                 type=str,
             ),
@@ -65,6 +66,28 @@ from .filters import AlbumFilter
         responses={
             200: AlbumSerializer(many=True),
         },
+        examples=[
+            OpenApiExample(
+                "List albums response",
+                value=[
+                    {
+                        "id": 1,
+                        "artist": "Pink Floyd",
+                        "title": "The Dark Side of the Moon",
+                        "year": 1973,
+                        "genre": "Progressive Rock",
+                    },
+                    {
+                        "id": 2,
+                        "artist": "Radiohead",
+                        "title": "OK Computer",
+                        "year": 1997,
+                        "genre": "Alternative Rock",
+                    },
+                ],
+                response_only=True,
+            ),
+        ],
     ),
     retrieve=extend_schema(
         summary="Retrieve album details",
@@ -73,6 +96,19 @@ from .filters import AlbumFilter
             200: AlbumSerializer,
             404: OpenApiResponse(description="Album not found"),
         },
+        examples=[
+            OpenApiExample(
+                "Retrieve album response",
+                value={
+                    "id": 1,
+                    "artist": "Pink Floyd",
+                    "title": "The Dark Side of the Moon",
+                    "year": 1973,
+                    "genre": "Progressive Rock",
+                },
+                response_only=True,
+            ),
+        ],
     ),
     create=extend_schema(
         summary="Create a new album",
@@ -81,6 +117,29 @@ from .filters import AlbumFilter
             201: AlbumSerializer,
             400: OpenApiResponse(description="Invalid input data"),
         },
+        examples=[
+            OpenApiExample(
+                "Create album request",
+                value={
+                    "artist": "Daft Punk",
+                    "title": "Random Access Memories",
+                    "year": 2013,
+                    "genre": "Electronic",
+                },
+                request_only=True,
+            ),
+            OpenApiExample(
+                "Create album response",
+                value={
+                    "id": 3,
+                    "artist": "Daft Punk",
+                    "title": "Random Access Memories",
+                    "year": 2013,
+                    "genre": "Electronic",
+                },
+                response_only=True,
+            ),
+        ],
     ),
     update=extend_schema(
         summary="Update an album",
@@ -90,6 +149,29 @@ from .filters import AlbumFilter
             400: OpenApiResponse(description="Invalid input data"),
             404: OpenApiResponse(description="Album not found"),
         },
+        examples=[
+            OpenApiExample(
+                "Update album request",
+                value={
+                    "artist": "Pink Floyd",
+                    "title": "Wish You Were Here",
+                    "year": 1975,
+                    "genre": "Progressive Rock",
+                },
+                request_only=True,
+            ),
+            OpenApiExample(
+                "Update album response",
+                value={
+                    "id": 1,
+                    "artist": "Pink Floyd",
+                    "title": "Wish You Were Here",
+                    "year": 1975,
+                    "genre": "Progressive Rock",
+                },
+                response_only=True,
+            ),
+        ],
     ),
     partial_update=extend_schema(
         summary="Partially update an album",
@@ -99,6 +181,24 @@ from .filters import AlbumFilter
             400: OpenApiResponse(description="Invalid input data"),
             404: OpenApiResponse(description="Album not found"),
         },
+        examples=[
+            OpenApiExample(
+                "Partial update request",
+                value={"genre": "Rock"},
+                request_only=True,
+            ),
+            OpenApiExample(
+                "Partial update response",
+                value={
+                    "id": 1,
+                    "artist": "Pink Floyd",
+                    "title": "The Dark Side of the Moon",
+                    "year": 1973,
+                    "genre": "Rock",
+                },
+                response_only=True,
+            ),
+        ],
     ),
     destroy=extend_schema(
         summary="Delete an album",
@@ -143,6 +243,19 @@ class AlbumViewSet(viewsets.ModelViewSet):
             200: AlbumSerializer,
             404: OpenApiResponse(description="No albums found"),
         },
+        examples=[
+            OpenApiExample(
+                "Random album response",
+                value={
+                    "id": 5,
+                    "artist": "Fleetwood Mac",
+                    "title": "Rumours",
+                    "year": 1977,
+                    "genre": "Rock",
+                },
+                response_only=True,
+            ),
+        ],
     )
     @action(detail=False, methods=["get"])
     def random(self, request):
