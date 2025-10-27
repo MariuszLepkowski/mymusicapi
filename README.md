@@ -1,4 +1,4 @@
-_****# 🎵 mymusicapi
+# 🎵 mymusicapi
 
 **mymusicapi** is a RESTful web service built with **Django REST Framework**, providing CRUD operations, filtering, and search functionality for a collection of music albums.
 <div align="center">
@@ -17,7 +17,7 @@ Before running the project, make sure you have the following installed:
 
 ---
 
-### Tech Stack
+## Tech Stack
 
 - **Python 3.12**
 - **Django 5 / Django REST Framework**
@@ -34,14 +34,15 @@ The API is fully documented using **drf-spectacular** and exposed through **Swag
 
 Once the containers are running, you can access:
 
-- Swagger → [http://localhost:8000/api/docs/](http://localhost:8000/api/docs/)
+- **Swagger →** [http://localhost:8000/api/docs/](http://localhost:8000/api/docs/)
 <div align="center">
 <img src="docs/screenshots/swagger-docs-example-1.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
 <div align="center">
 <img src="docs/screenshots/swagger-docs-example-2.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
-- ReDoc → [http://localhost:8000/api/redoc/](http://localhost:8000/api/redoc/)
+
+- **ReDoc →** [http://localhost:8000/api/redoc/](http://localhost:8000/api/redoc/)
 <div align="center">
 <img src="docs/screenshots/redoc-docs-example-1.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
@@ -51,8 +52,9 @@ Once the containers are running, you can access:
 <div align="center">
 <img src="docs/screenshots/redoc-docs-example-3.jpg" style="width:80%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
+
 You can also view the OpenAPI JSON schema directly:
-- [http://localhost:8000/api/schema/](http://localhost:8000/api/schema/)
+[http://localhost:8000/api/schema/](http://localhost:8000/api/schema/)
 
 ---
 
@@ -169,8 +171,8 @@ docker-compose up --build
 ```
 ## After successful startup, visit:
 - Albums API: http://localhost:8000/api/albums/
-- Swagger UI: http://localhost:8000/api/schema/swagger-ui/
-- ReDoc documentation: http://localhost:8000/api/schema/redoc/
+- Swagger UI: http://localhost:8000/api/docs/
+- ReDoc documentation: http://localhost:8000/api/redoc/
 
 #### To stop all containers:
 ```sh
