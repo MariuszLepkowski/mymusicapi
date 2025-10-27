@@ -2,9 +2,12 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
+from . import schema
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("albums.urls")),
+    path("", include(schema.urlpatterns)),
 ]
 
 
