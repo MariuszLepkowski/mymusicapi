@@ -1,8 +1,19 @@
-# 🎵 mymusicapi
+_****# 🎵 mymusicapi
 
 **mymusicapi** is a RESTful web service built with **Django REST Framework**, providing CRUD operations, filtering, and search functionality for a collection of music albums.
-
+<div align="center">
+<img src="docs/screenshots/swagger-docs.jpg" style="width:40%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
 Designed as part of a **portfolio project**, this API demonstrates modern backend development practices — including containerization with Docker, automated testing, and CI with GitHub Actions.
+
+---
+## Prerequisites
+
+Before running the project, make sure you have the following installed:
+
+- **Docker** and **Docker Compose** (required)
+- **Git** (for cloning the repository)
+- (Optional) **Python 3.10+** — only if you want to run or inspect the code locally without Docker.
 
 ---
 
@@ -15,6 +26,33 @@ Designed as part of a **portfolio project**, this API demonstrates modern backen
 - **Pytest + Factory Boy**
 - **GitHub Actions (CI)**
 - **drf-spectacular** for automatic API documentation (Swagger / Redoc)
+---
+
+## API Documentation Preview
+
+The API is fully documented using **drf-spectacular** and exposed through **Swagger** and **ReDoc**.
+
+Once the containers are running, you can access:
+
+- Swagger → [http://localhost:8000/api/docs/](http://localhost:8000/api/docs/)
+<div align="center">
+<img src="docs/screenshots/swagger-docs-example-1.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+<div align="center">
+<img src="docs/screenshots/swagger-docs-example-2.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+- ReDoc → [http://localhost:8000/api/redoc/](http://localhost:8000/api/redoc/)
+<div align="center">
+<img src="docs/screenshots/redoc-docs-example-1.jpg" style="width:90%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+<div align="center">
+<img src="docs/screenshots/redoc-docs-example-2.jpg" style="width:900%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+<div align="center">
+<img src="docs/screenshots/redoc-docs-example-3.jpg" style="width:80%; height:auto; display: block; margin-left:auto; margin-right:auto;">
+</div>
+You can also view the OpenAPI JSON schema directly:
+- [http://localhost:8000/api/schema/](http://localhost:8000/api/schema/)
 
 ---
 
@@ -196,4 +234,36 @@ docker-compose exec web python manage.py migrate
 
 # Access Django shell
 docker-compose exec web python manage.py shell
+```
+
+## Try the API Yourself
+
+You can quickly test the API locally using cURL.
+
+**All example requests are provided in:**
+[api_examples.md](api_examples.md)
+
+Each example includes a ready-to-copy command and a sample JSON response.
+No authentication required (Stage 1 demo API).
+
+Example:
+```sh
+curl -X GET "http://localhost:8000/api/albums/?search=rock" \
+     -H "Accept: application/json"
+```
+
+Response (example):
+```sh
+{
+  "count": 1,
+  "results": [
+    {
+      "id": 1,
+      "artist": "Pink Floyd",
+      "title": "The Dark Side of the Moon",
+      "year": 1973,
+      "genre": "Progressive Rock"
+    }
+  ]
+}
 ```
