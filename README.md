@@ -4,6 +4,7 @@
 <div align="center">
 <img src="docs/screenshots/swagger-docs.jpg" style="width:40%; height:auto; display: block; margin-left:auto; margin-right:auto;">
 </div>
+
 Designed as part of a **portfolio project**, this API demonstrates modern backend development practices — including containerization with Docker, automated testing, and CI with GitHub Actions.
 
 ---
@@ -24,10 +25,9 @@ Before running the project, make sure you have the following installed:
 - **PostgreSQL**
 - **Docker & docker-compose**
 - **Pytest + Factory Boy**
-- **GitHub Actions (CI)**
+- **GitHub Actions** ([![CI](https://github.com/MariuszLepkowski/mymusicapi/actions/workflows/ci.yml/badge.svg)](https://github.com/MariuszLepkowski/mymusicapi/actions))
 - **drf-spectacular** for automatic API documentation (Swagger / Redoc)
 ---
-
 ## API Documentation Preview
 
 The API is fully documented using **drf-spectacular** and exposed through **Swagger** and **ReDoc**.
@@ -55,97 +55,6 @@ Once the containers are running, you can access:
 
 You can also view the OpenAPI JSON schema directly:
 [http://localhost:8000/api/schema/](http://localhost:8000/api/schema/)
-
----
-
-## Project Status
-
-**Stage 1 – Completed**
-
-The first milestone of the project is complete, focusing on the **Public Albums API** with the following features:
-- Full CRUD operations (Create, Read, Update, Delete)
-- Filtering, search, and ordering
-- Pagination support
-- Random album endpoint
-- CSV-based data seeding
-- Automated testing and continuous integration (GitHub Actions)
-- OpenAPI documentation via Swagger & ReDoc
-
-Currently, the project runs locally via Docker and is not yet deployed to production.
-Deployment to a cloud environment (e.g. **AWS**, **Render**, or **DigitalOcean**) is planned for a later phase.
-
----
-
-### Next Development Stages
-
-#### Stage 2 – Authentication (JWT)
-Add user authentication and authorization using **JSON Web Tokens (JWT)**.
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `POST` | `/api/auth/register/` | Register a new user |
-| `POST` | `/api/auth/login/` | Log in and receive access + refresh tokens |
-| `POST` | `/api/auth/refresh/` | Refresh access token |
-| `GET` | `/api/auth/me/` | Retrieve data of the authenticated user |
-
----
-
-#### Stage 3 – User Album Collection
-Allow each authenticated user to manage their own private album collection.
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/api/me/albums/` | List albums in user’s collection |
-| `POST` | `/api/me/albums/add/` | Add an album to user’s collection |
-| `DELETE` | `/api/me/albums/{album_id}/` | Remove an album from collection |
-| `PATCH` | `/api/me/albums/{album_id}/rating/` | Update rating / favorite status |
-
----
-
-#### Stage 4 – Playlists
-Enable users to create and manage personal playlists.
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/api/playlists/` | List all user playlists |
-| `POST` | `/api/playlists/` | Create a new playlist |
-| `GET` | `/api/playlists/{id}/` | Get playlist details (with albums) |
-| `PATCH` | `/api/playlists/{id}/` | Edit playlist name or details |
-| `DELETE` | `/api/playlists/{id}/` | Delete a playlist |
-| `POST` | `/api/playlists/{id}/albums/add/` | Add an album to a playlist |
-| `DELETE` | `/api/playlists/{id}/albums/{album_id}/` | Remove album from playlist |
-
----
-
-#### Stage 5 – Recommendations
-Add recommendation logic to suggest albums based on user preferences or favorite genres.
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/api/recommendations/` | Return recommended albums |
-
----
-
-#### Stage 6 – User Statistics (Optional)
-Provide data summaries and insights for each user.
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/api/stats/` | Returns summary data: total albums, top genres, playlists count, etc. |
-
----
-
-### Summary
-
-This repository represents the **first phase of a larger music collection API platform**.
-It demonstrates clean REST architecture, Docker-based deployment, automated testing, and modern API documentation — serving as a portfolio project and a foundation for future feature expansion.
-
-
----
-
-### Continuous Integration
-
-[![CI](https://github.com/MariuszLepkowski/mymusicapi/actions/workflows/ci.yml/badge.svg)](https://github.com/MariuszLepkowski/mymusicapi/actions)
 
 ---
 
@@ -269,3 +178,89 @@ Response (example):
   ]
 }
 ```
+---
+
+## Project Status
+
+**Stage 1 – Completed**
+
+The first milestone of the project is complete, focusing on the **Public Albums API** with the following features:
+- Full CRUD operations (Create, Read, Update, Delete)
+- Filtering, search, and ordering
+- Pagination support
+- Random album endpoint
+- CSV-based data seeding
+- Automated testing and continuous integration (GitHub Actions)
+- OpenAPI documentation via Swagger & ReDoc
+
+Currently, the project runs locally via Docker and is not yet deployed to production.
+Deployment to a cloud environment (e.g. **AWS**, **Render**, or **DigitalOcean**) is planned for a later phase.
+
+---
+
+### Next Development Stages
+
+#### Stage 2 – Authentication (JWT)
+Add user authentication and authorization using **JSON Web Tokens (JWT)**.
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| `POST` | `/api/auth/register/` | Register a new user |
+| `POST` | `/api/auth/login/` | Log in and receive access + refresh tokens |
+| `POST` | `/api/auth/refresh/` | Refresh access token |
+| `GET` | `/api/auth/me/` | Retrieve data of the authenticated user |
+
+---
+
+#### Stage 3 – User Album Collection
+Allow each authenticated user to manage their own private album collection.
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| `GET` | `/api/me/albums/` | List albums in user’s collection |
+| `POST` | `/api/me/albums/add/` | Add an album to user’s collection |
+| `DELETE` | `/api/me/albums/{album_id}/` | Remove an album from collection |
+| `PATCH` | `/api/me/albums/{album_id}/rating/` | Update rating / favorite status |
+
+---
+
+#### Stage 4 – Playlists
+Enable users to create and manage personal playlists.
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| `GET` | `/api/playlists/` | List all user playlists |
+| `POST` | `/api/playlists/` | Create a new playlist |
+| `GET` | `/api/playlists/{id}/` | Get playlist details (with albums) |
+| `PATCH` | `/api/playlists/{id}/` | Edit playlist name or details |
+| `DELETE` | `/api/playlists/{id}/` | Delete a playlist |
+| `POST` | `/api/playlists/{id}/albums/add/` | Add an album to a playlist |
+| `DELETE` | `/api/playlists/{id}/albums/{album_id}/` | Remove album from playlist |
+
+---
+
+#### Stage 5 – Recommendations
+Add recommendation logic to suggest albums based on user preferences or favorite genres.
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| `GET` | `/api/recommendations/` | Return recommended albums |
+
+---
+
+#### Stage 6 – User Statistics (Optional)
+Provide data summaries and insights for each user.
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| `GET` | `/api/stats/` | Returns summary data: total albums, top genres, playlists count, etc. |
+
+---
+
+### Summary
+
+This repository represents the **first phase of a larger music collection API platform**.
+It demonstrates clean REST architecture, Docker-based deployment, automated testing, and modern API documentation — serving as a portfolio project and a foundation for future feature expansion.
+
+
+---
