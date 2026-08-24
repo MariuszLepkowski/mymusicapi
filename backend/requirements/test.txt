@@ -1,5 +1,3 @@
--r dev.txt
-
 pytest
 pytest-django
 pytest-cov

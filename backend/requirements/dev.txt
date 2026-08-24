@@ -8,3 +8,4 @@ flake8-comprehensions
 black
 isort
 drf-spectacular
+-r test.txt
